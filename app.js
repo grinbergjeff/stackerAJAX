@@ -46,8 +46,10 @@ var showUser = function(parameter) {
 	//clone template code
 	var result = $('.templates .user').clone();
 	
-	//find profile photo
+	----//What do I want to show??????---------
 	
+	//find profile photo
+	results.find('profile_img img').
 	//show name as a link
 	
 	//show rep pts
@@ -102,6 +104,7 @@ var getUnanswered = function(tags) {
 	});
 };
 //Starting Get Inspired Challenge
+//Code loosely based off getUnanswered code
 //Implementation of StackOverflow's second function
 var getInspired (tags) {
 	
