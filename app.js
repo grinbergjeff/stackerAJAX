@@ -40,7 +40,21 @@ var showQuestion = function(question) {
 
 	return result;
 };
-
+//Function to show user information
+var showUser = function(parameter) {
+	//Code based loosely off of showQuestion
+	//clone template code
+	var result = $('.templates .user').clone();
+	
+	//find profile photo
+	
+	//show name as a link
+	
+	//show rep pts
+	
+	return results;
+	
+}
 
 // this function takes the results object from StackOverflow
 // and creates info about search results to be appended to DOM
