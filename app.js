@@ -87,6 +87,37 @@ var getUnanswered = function(tags) {
 		$('.search-results').append(errorElem);
 	});
 };
+//Starting Get Inspired Challenge
+//Implementation of StackOverflow's second function
+var getInspired (tags) {
+	
+	var request = {tagged: tags,
+				   				site: 'stackoverflow',
+				   				
+				  };
+	var result =$.ajax({
+		url: 'http://api.stackexchange.com/2.2/tags',
+		data: request,
+		dataType: 'jsonp',
+		type: 'GET',
+	})
+	//done setup
+	.done(function(result){
+		var searchResult = showSearchResults(request.tagged, result.items.length);
+		
+		$('.search-results').html(searchResults);
 
+		$.each(result.items, function(i, item) {
+			//display the top users
+			var topusers = showUser(item);
+			$('.results').append(topusers);
+		});
+	});
+	//fail setup
+	.fail(function(jqXHR, error, errorThrown){
+		var errorElem = showError(error);
+		$('.search-results').append(errorElem);
+	});
+};
 
 
