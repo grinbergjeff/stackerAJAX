@@ -6,6 +6,14 @@ $(document).ready( function() {
 		var tags = $(this).find("input[name='tags']").val();
 		getUnanswered(tags);
 	});
+	//Run GetInspired here:
+	$('.inspiration-getter').submit( function(event){
+		// zero out results if previous search has run
+		$('.results').html('');
+		// get the value of the tags the user submitted
+		var answerers = $(this).find("input[name='tags']").val();
+		getUnanswered(answerers);
+	});
 });
 
 // this function takes the question object returned by StackOverflow 
@@ -49,11 +57,14 @@ var showUser = function(parameter) {
 	----//What do I want to show??????---------
 	
 	//find profile photo
-	results.find('profile_img img').
+	var answererimage = results.find('.profile_img');
+	answererimage.html('<img src="' + parameter.user.profile_image + '">'); 
 	//show name as a link
-	var nameElem = result.find()
+	var nameElem = result.find('.display-name');
+	nameElem.html('<a href="' + parameter.user.link + '" target="_blank">' + parameter.user.display_name + '</a>'); 
 	//show rep pts
-	
+	result.find('.reputation').text(parameter.user.reputation);
+	result.find('.score').text(parameter.score);
 	return results;
 	
 }
@@ -113,7 +124,7 @@ var getInspired (tags) {
 				   				
 				  };
 	var result =$.ajax({
-		url: 'http://api.stackexchange.com/2.2/tags',
+		url: 'http://api.stackexchange.com/2.2/tags' + request.tagged + '/top-answerers/',
 		data: request,
 		dataType: 'jsonp',
 		type: 'GET',
