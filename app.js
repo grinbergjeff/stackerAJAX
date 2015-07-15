@@ -8,10 +8,11 @@ $(document).ready( function() {
 	});
 	//Run GetInspired here:
 	$('.inspiration-getter').submit( function(event){
+		console.log('running inspiration getter');
 		// zero out results if previous search has run
 		$('.results').html('');
 		// get the value of the tags the user submitted
-		var answerers = $(this).find("input[name='tags']").val();
+		var answerers = $(this).find("input[name='answerers']").val();
 		getUnanswered(answerers);
 	});
 });
@@ -57,7 +58,8 @@ var showUser = function(parameter) {
 	//----What do I want to show??????---------
 	
 	//find profile photo
-	var answererimage = results.find('.profile_img');
+	var answererimage = results.find('.prof_img');
+	console.log('displaying userimage');
 	answererimage.html('<img src="' + parameter.user.profile_image + '">'); 
 	//show name as a link
 	var nameElem = result.find('.display-name');
@@ -117,9 +119,9 @@ var getUnanswered = function(tags) {
 //Starting Get Inspired Challenge
 //Code loosely based off getUnanswered code
 //Implementation of StackOverflow's second function
-var getInspired (tags) {
+var getInspired = function(tags) {
 	
-	var request = {tagged: tags,
+	var request = {tagged: answerers,
 				   				site: 'stackoverflow',
 				   				
 				  };
@@ -131,6 +133,7 @@ var getInspired (tags) {
 	})
 	//done setup
 	.done(function(result){
+		console.log('Request was successful');
 		var searchResult = showSearchResults(request.tagged, result.items.length);
 		
 		$('.search-results').html(searchResults);
@@ -140,7 +143,7 @@ var getInspired (tags) {
 			var topusers = showUser(item);
 			$('.results').append(topusers);
 		});
-	});
+	})
 	//fail setup
 	.fail(function(jqXHR, error, errorThrown){
 		var errorElem = showError(error);
