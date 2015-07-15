@@ -51,7 +51,7 @@ var showUser = function(parameter) {
 	//find profile photo
 	results.find('profile_img img').
 	//show name as a link
-	
+	var nameElem = result.find()
 	//show rep pts
 	
 	return results;
