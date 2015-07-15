@@ -54,7 +54,7 @@ var showUser = function(parameter) {
 	//clone template code
 	var result = $('.templates .user').clone();
 	
-	----//What do I want to show??????---------
+	//----What do I want to show??????---------
 	
 	//find profile photo
 	var answererimage = results.find('.profile_img');
