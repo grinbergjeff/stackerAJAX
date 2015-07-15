@@ -13,7 +13,7 @@ $(document).ready( function() {
 		$('.results').html('');
 		// get the value of the tags the user submitted
 		var answerers = $(this).find("input[name='answerers']").val();
-		getUnanswered(answerers);
+		getInspired(answerers);
 	});
 });
 
@@ -119,7 +119,7 @@ var getUnanswered = function(tags) {
 //Starting Get Inspired Challenge
 //Code loosely based off getUnanswered code
 //Implementation of StackOverflow's second function
-var getInspired = function(tags) {
+var getInspired = function(answerers) {
 	
 	var request = {tagged: answerers,
 				   				site: 'stackoverflow',
