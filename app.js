@@ -58,7 +58,7 @@ var showUser = function(parameter) {
 	//----What do I want to show??????---------
 	
 	//find profile photo
-	var answererimage = result.find('.prof_img');
+	var answererimage = result.find('.prof-img');
 	console.log('displaying userimage');
 	answererimage.html('<img src="' + parameter.user.profile_image + '">'); 
 	//show name as a link
@@ -66,7 +66,7 @@ var showUser = function(parameter) {
 	nameElem.html('<a href="' + parameter.user.link + '" target="_blank">' + parameter.user.display_name + '</a>'); 
 	//show rep pts
 	result.find('.reputation').text(parameter.user.reputation);
-	result.find('.score').text(parameter.score);
+	result.find('.tag-score').text(parameter.score);
 	return result;
 	
 }
