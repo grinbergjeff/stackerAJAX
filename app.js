@@ -58,7 +58,7 @@ var showUser = function(parameter) {
 	//----What do I want to show??????---------
 	
 	//find profile photo
-	var answererimage = results.find('.prof_img');
+	var answererimage = result.find('.prof_img');
 	console.log('displaying userimage');
 	answererimage.html('<img src="' + parameter.user.profile_image + '">'); 
 	//show name as a link
@@ -67,7 +67,7 @@ var showUser = function(parameter) {
 	//show rep pts
 	result.find('.reputation').text(parameter.user.reputation);
 	result.find('.score').text(parameter.score);
-	return results;
+	return result;
 	
 }
 
@@ -120,28 +120,24 @@ var getUnanswered = function(tags) {
 //Code loosely based off getUnanswered code
 //Implementation of StackOverflow's second function
 var getInspired = function(answerers) {
-	
 	var request = {tagged: answerers,
-				   				site: 'stackoverflow',
-				   				
-				  };
-	var result =$.ajax({
-		url: 'http://api.stackexchange.com/2.2/tags' + request.tagged + '/top-answerers/',
+								site: 'stackoverflow',
+			  					period: 'month'};
+
+	var result = $.ajax({
+		url: "http://api.stackexchange.com/2.2/tags/" + request.tagged + "/top-answerers/" + request.period,
 		data: request,
-		dataType: 'jsonp',
-		type: 'GET',
+		dataType: "jsonp",
+		type: "GET",
 	})
-	//done setup
 	.done(function(result){
-		console.log('Request was successful');
-		var searchResult = showSearchResults(request.tagged, result.items.length);
-		
+		var searchResults = showSearchResults(request.tagged, result.items.length);
+
 		$('.search-results').html(searchResults);
 
-		$.each(result.items, function(i, item) {
-			//display the top users
-			var topusers = showUser(item);
-			$('.results').append(topusers);
+		$.each(result.items, function(i, item){
+			var topUsers = showUser(item);
+			$('.results').append(topUsers);
 		});
 	})
 	//fail setup
