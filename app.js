@@ -59,7 +59,6 @@ var showUser = function(parameter) {
 	
 	//find profile photo
 	var answererimage = result.find('.prof-img');
-	console.log('displaying userimage');
 	answererimage.html('<img src="' + parameter.user.profile_image + '">'); 
 	//show name as a link
 	var nameElem = result.find('.display-name');
@@ -102,6 +101,7 @@ var getUnanswered = function(tags) {
 		type: "GET",
 		})
 	.done(function(result){
+		console.log('request successful');
 		var searchResults = showSearchResults(request.tagged, result.items.length);
 
 		$('.search-results').html(searchResults);
